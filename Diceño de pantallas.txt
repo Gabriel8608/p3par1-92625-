@@ -1,0 +1,252 @@
+## 🧭 Navegación general
+
+Se usará **Navigation Compose** para moverse entre pantallas.
+
+```
+┌──────────────────────────────┐
+│      MainActivity            │
+│   (NavHostController)        │
+└──────────────┬───────────────┘
+               │
+     ┌─────────┴─────────┐
+     ▼                   ▼
+┌─────────────┐   ┌─────────────┐
+│  Catálogo   │   │   Ventas    │
+│ (Libros)    │   │ (Ventas)    │
+└─────────────┘   └─────────────┘
+```
+
+- **Ruta 1:** `"catalogo"` → Pantalla de libros
+- **Ruta 2:** `"ventas"` → Pantalla de ventas
+- **Barra inferior** (`NavigationBar`) para alternar entre ambas.
+
+---
+
+## 📱 Pantalla 1 – Catálogo de Libros
+
+### 🎯 Objetivo
+Listar todos los libros de la librería mostrando: título, autor, género, precio y stock.
+
+### 🧩 Componentes Compose utilizados
+
+| Componente | Uso |
+|------------|-----|
+| `Scaffold` | Estructura general con TopAppBar y BottomBar |
+| `TopAppBar` | Título "Catálogo de Libros" |
+| `NavigationBar` | Navegación inferior entre pantallas |
+| `NavigationBarItem` | Ítems "Catálogo" y "Ventas" |
+| `LazyColumn` | Lista scrolleable de libros |
+| `items()` | Iterar sobre la lista de libros |
+| `Card` | Contenedor visual de cada libro |
+| `Row` / `Column` | Organización interna del Card |
+| `Text` | Título, autor, género, precio, stock |
+| `Icon` | Ícono de libro y de stock |
+| `Icons.Default.MenuBook` | Ícono de libro |
+| `Icons.Default.Person` | Ícono de autor |
+| `Divider` / `HorizontalDivider` | Separación visual |
+| `Spacer` | Espaciado entre elementos |
+| `MaterialTheme.colorScheme` | Colores según tema |
+
+### 🖼️ Boceto de la pantalla
+
+```
+┌──────────────────────────────────┐
+│  📚 Catálogo de Libros           │  ← TopAppBar
+├──────────────────────────────────┤
+│ ┌──────────────────────────────┐ │
+│ │ 📖 Cien años de soledad      │ │  ← Card
+│ │ 👤 Gabriel García Márquez    │ │
+│ │ 🏷️ Novela                    │ │
+│ │ 💲 25.00   📦 Stock: 5       │ │
+│ └──────────────────────────────┘ │
+│ ┌──────────────────────────────┐ │
+│ │ 📖 Harry Potter...           │ │
+│ │ 👤 J.K. Rowling              │ │
+│ │ 🏷️ Fantasía                  │ │
+│ │ 💲 30.00   📦 Stock: 8       │ │
+│ └──────────────────────────────┘ │
+│              ...                 │
+├──────────────────────────────────┤
+│  🏠 Catálogo    🛒 Ventas        │  ← NavigationBar
+└──────────────────────────────────┘
+```
+
+### 🧱 Estructura del Composable
+
+```
+PantallaCatalogo()
+ └── Scaffold
+      ├── topBar: TopAppBar("Catálogo de Libros")
+      ├── bottomBar: NavigationBar
+      └── content:
+           └── LazyColumn
+                └── items(libros) { libro ->
+                     └── CardLibro(libro)
+                          └── Row
+                               ├── Icon(MenuBook)
+                               └── Column
+                                    ├── Text(titulo)
+                                    ├── Text(autor.nombre)
+                                    ├── Text(genero)
+                                    └── Row
+                                         ├── Text(precio)
+                                         └── Text(stock)
+                }
+```
+
+---
+
+## 📱 Pantalla 2 – Historial de Ventas
+
+### 🎯 Objetivo
+Listar todas las ventas realizadas mostrando: cliente, fecha, libros comprados y total.
+
+### 🧩 Componentes Compose utilizados
+
+| Componente | Uso |
+|------------|-----|
+| `Scaffold` | Estructura general |
+| `TopAppBar` | Título "Historial de Ventas" |
+| `NavigationBar` | Navegación inferior |
+| `LazyColumn` | Lista scrolleable de ventas |
+| `items()` | Iterar sobre las ventas |
+| `Card` | Contenedor de cada venta |
+| `Column` / `Row` | Organización interna |
+| `Text` | Cliente, fecha, total |
+| `Icon` | Íconos de persona, dinero, fecha |
+| `Icons.Default.ShoppingCart` | Ícono de venta |
+| `Icons.Default.Person` | Cliente |
+| `Icons.Default.DateRange` | Fecha |
+| `Icons.Default.AttachMoney` | Total |
+| `AssistChip` | Mostrar cantidad de libros |
+| `Divider` | Separar secciones del Card |
+| `Spacer` | Espaciado |
+
+### 🖼️ Boceto de la pantalla
+
+```
+┌──────────────────────────────────┐
+│  🛒 Historial de Ventas          │  ← TopAppBar
+├──────────────────────────────────┤
+│ ┌──────────────────────────────┐ │
+│ │ Venta #1                     │ │  ← Card
+│ │ 👤 Ana Pérez                 │ │
+│ │ 📅 2025-10-01                │ │
+│ │ ──────────────────────       │ │
+│ │ 📚 Cien años de soledad      │ │
+│ │ 📚 El Aleph                  │ │
+│ │ ──────────────────────       │ │
+│ │ 💲 Total: 45.00              │ │
+│ │ [ 2 libros ]                 │ │  ← AssistChip
+│ └──────────────────────────────┘ │
+│ ┌──────────────────────────────┐ │
+│ │ Venta #2                     │ │
+│ │ 👤 Luis Gómez                │ │
+│ │ 📅 2025-10-02                │ │
+│ │ 📚 Harry Potter...           │ │
+│ │ 💲 Total: 30.00              │ │
+│ └──────────────────────────────┘ │
+│              ...                 │
+├──────────────────────────────────┤
+│  🏠 Catálogo    🛒 Ventas        │  ← NavigationBar
+└──────────────────────────────────┘
+```
+
+### 🧱 Estructura del Composable
+
+```
+PantallaVentas()
+ └── Scaffold
+      ├── topBar: TopAppBar("Historial de Ventas")
+      ├── bottomBar: NavigationBar
+      └── content:
+           └── LazyColumn
+                └── items(ventas) { venta ->
+                     └── CardVenta(venta)
+                          └── Column
+                               ├── Text("Venta #${venta.id}")
+                               ├── Row
+                               │    ├── Icon(Person)
+                               │    └── Text(venta.cliente.nombre)
+                               ├── Row
+                               │    ├── Icon(DateRange)
+                               │    └── Text(venta.fecha)
+                               ├── HorizontalDivider()
+                               ├── Column(libros)
+                               │    └── Text("• ${libro.titulo}")
+                               ├── HorizontalDivider()
+                               ├── Row
+                               │    ├── Icon(AttachMoney)
+                               │    └── Text("Total: ${venta.total}")
+                               └── AssistChip("${libros.size} libros")
+                }
+```
+
+---
+
+## 🧭 Barra de navegación (compartida)
+
+```kotlin
+NavigationBar {
+    NavigationBarItem(
+        selected = currentRoute == "catalogo",
+        onClick = { navController.navigate("catalogo") },
+        icon = { Icon(Icons.Default.MenuBook, contentDescription = null) },
+        label = { Text("Catálogo") }
+    )
+    NavigationBarItem(
+        selected = currentRoute == "ventas",
+        onClick = { navController.navigate("ventas") },
+        icon = { Icon(Icons.Default.ShoppingCart, contentDescription = null) },
+        label = { Text("Ventas") }
+    )
+}
+```
+
+---
+
+## 🎨 Paleta y estilos
+
+| Elemento | Color / Estilo |
+|----------|----------------|
+| TopAppBar | `MaterialTheme.colorScheme.primaryContainer` |
+| Card | `MaterialTheme.colorScheme.surfaceVariant` |
+| Texto principal | `MaterialTheme.typography.titleMedium` |
+| Texto secundario | `MaterialTheme.typography.bodySmall` |
+| Precio | `MaterialTheme.colorScheme.primary` |
+| Stock bajo (< 3) | `MaterialTheme.colorScheme.error` |
+
+---
+
+## 📦 Dependencias necesarias en `build.gradle.kts (Module: app)`
+
+```kotlin
+dependencies {
+    implementation("androidx.core:core-ktx:1.13.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+    implementation("androidx.activity:activity-compose:1.9.1")
+
+    // Compose BOM
+    implementation(platform("androidx.compose:compose-bom:2024.09.00"))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material-icons-extended")
+
+    // Navigation Compose
+    implementation("androidx.navigation:navigation-compose:2.8.0")
+}
+```
+
+---
+
+## ✅ Resumen del Checkpoint 4
+
+| Pantalla | Objeto listado | Componentes clave |
+|----------|---------------|-------------------|
+| **Catálogo** | `Libro` | Scaffold, TopAppBar, LazyColumn, Card, Row, Column, Text, Icon |
+| **Ventas** | `Venta` | Scaffold, TopAppBar, LazyColumn, Card, AssistChip, HorizontalDivider |
+| **Navegación** | — | NavHost, NavController, NavigationBar, NavigationBarItem |
+
+---
