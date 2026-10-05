@@ -1,10 +1,10 @@
-package par1p3.data
+package com.example.par1p3.data
 
-import par1p3.model.Autor
-import par1p3.model.Cliente
-import par1p3.model.Libreria
-import par1p3.model.Libro
-import par1p3.model.Venta
+import com.example.par1p3.model.Autor
+import com.example.par1p3.model.Cliente
+import com.example.par1p3.model.Libreria
+import com.example.par1p3.model.Libro
+import com.example.par1p3.model.Venta
 
 object DatosMock {
 

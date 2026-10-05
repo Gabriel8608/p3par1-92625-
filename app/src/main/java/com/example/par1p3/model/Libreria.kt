@@ -1,4 +1,4 @@
-package par1p3.model
+package com.example.par1p3.model
 
 class Libreria(
     val nombre: String,
