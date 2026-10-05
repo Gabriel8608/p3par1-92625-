@@ -1,0 +1,5 @@
+Libreria ──1..*──> Libro
+Libro    ──*..1──> Autor
+Venta    ──*..1──> Cliente
+Venta    ──*..*──> Libro
+Libreria ──1..*──> Venta
