@@ -1,0 +1,134 @@
+# 📋 Registro de Prompts de la Conversación
+
+## Prompt 1
+**Pregunta (textual):**
+> "El caso elegido es una librería simple, extremadamente simple. Con el caso de estudio elegido el estudiante debe entregar:
+> 1. Modelo de clases
+> 2. Implementación de las clases en el proyecto
+> 3. Diseño de pantallas
+> 4. Aplicación con dos pantallas que liste al menos dos de los objetos implementados
+>
+> Debe subir todo el proyecto a un repositorio público de Github y debe ser compartido al docente.
+>
+> Checkpoint 1 – Diseño de clases [15 puntos]
+> Analiza el problema planteado y presenta el diseño de las clases necesarias, identificando sus atributos, métodos y relaciones.
+> Primer commit
+>
+> Checkpoint 2 – Implementación [10 puntos]
+> Implementa en Kotlin las clases diseñadas en el checkpoint anterior, aplicando los conceptos de Programación Orientada a Objetos.
+> Segundo Commit
+>
+> Checkpoint 3 – Scripts [10 puntos]
+> Cargar los Scripts Usados en el examen
+> Tercer Commit
+>
+> Checkpoint 4 – Diseño de Interfaz [30 puntos]
+> Diseña dos interfaces que permita listar al menos dos de los objetos implementados, detalla los componentes de Jetpack compose que serán utilizados.
+>
+> Checkpoint 5 – Interfaz [20 puntos]
+> Construye dos pantallas utilizando Jetpack Compose que permita visualizar información de al menos dos de los objetos implementados.
+>
+> Checkpoint 6 – Compilación y ejecución [15 puntos]
+> Demuestra que tu proyecto compila correctamente y puede ejecutarse en un dispositivo o emulador Android.
+>
+> Primero quiero que me des el diseño de clases, que no sean muchas, menos de 10 si es posible. Quiero que sea algo sencillo, funcional y efectivo. Dame primero el diseño de clases."
+
+**Resumen de mi respuesta:** Propuse 6 clases: `Libro`, `Autor`, `Cliente`, `Venta`, `Libreria` y `DatosMock`, con sus atributos, métodos, relaciones y mapeo a las 2 pantallas Compose.
+
+---
+
+## Prompt 2
+**Pregunta (textual):**
+> "Eso sí, dale, una tras otra."
+
+**Resumen de mi respuesta:** Implementé las 6 clases en Kotlin (data classes + clases normales), con package `par1p3`, más verificación rápida y tabla de conceptos POO aplicados.
+
+---
+
+## Prompt 3
+**Pregunta (textual):**
+> "Cambia el package, el package es antes de model: par1p3."
+
+**Resumen de mi respuesta:** Reescribí todos los archivos Kotlin cambiando `package par1p3.model`, `par1p3.data`, etc., manteniendo la misma estructura y contenido.
+
+---
+
+## Prompt 4
+**Pregunta (textual):**
+> "Dale con el 3."
+
+**Resumen de mi respuesta:** *(omitido por indicación tuya, pues no se utilizó)*.
+
+---
+
+## Prompt 5
+**Pregunta (textual):**
+> "Dale con el Checkpoint 4."
+
+**Resumen de mi respuesta:** Diseñé las 2 pantallas (Catálogo de Libros y Historial de Ventas) con bocetos ASCII, componentes Compose usados (Scaffold, TopAppBar, LazyColumn, Card, etc.) y estructura de cada Composable.
+
+---
+
+## Prompt 6
+**Pregunta (textual):**
+> "Sí, sí, dale con eso. Supongo que eso va en la carpeta ui."
+
+**Resumen de mi respuesta:** Entregué código completo de `Navegacion.kt`, `PantallaCatalogo.kt`, `PantallaVentas.kt` y `MainActivity.kt`, más dependencias necesarias en Gradle.
+
+---
+
+## Prompt 7
+**Pregunta (textual):**
+> "Perdona. Estoy haciendo esto en Android Studio, y en la carpeta del proyecto dentro de src, java, example, y la carpeta original del package donde está model, ui y data, está el MainActivity.kt, y dentro del ui hay una llamada theme. ¿Esto lo coloco dentro de theme o solo dentro de ui para que funcione todo correctamente?"
+
+**Resumen de mi respuesta:** Expliqué que `MainActivity.kt` va en la raíz del package, las pantallas en `ui/`, y `theme/` se deja intacta; además advertí cambiar el `package` a `com.example.par1p3`.
+
+---
+
+## Prompt 8
+**Pregunta (textual):**
+> "D:\p3par1-92625-\app\src\main\java\com\example\par1p3"
+
+**Resumen de mi respuesta:** Reescribí **todos** los archivos con `package com.example.par1p3...` e imports correctos, listos para pegar en cada carpeta.
+
+---
+
+## Prompt 9
+**Pregunta (textual):**
+> "Bien. Este es mi build gradle actual. Dame el modificado para garantizar que están todas las dependencias que me pides.
+> dependencies {
+>     implementation("androidx.core:core-ktx:1.13.1")
+>     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+>     implementation("androidx.activity:activity-compose:1.9.1")
+>
+>     // Compose BOM
+>     implementation(platform("androidx.compose:compose-bom:2024.09.00"))
+>     implementation("androidx.compose.ui:ui")
+>     implementation("androidx.compose.ui:ui-graphics")
+>     implementation("androidx.compose.ui:ui-tooling-preview")
+>     implementation("androidx.compose.material3:material3")
+>     implementation("androidx.compose.material:material-icons-extended")
+>
+>     // Navigation Compose
+>     implementation("androidx.navigation:navigation-compose:2.8.0")
+>
+>     debugImplementation("androidx.compose.ui:ui-tooling")
+> }"
+
+**Resumen de mi respuesta:** Confirmé que **ya tenía todo lo necesario** (navigation-compose y material-icons-extended incluidos), mostré el archivo completo de referencia y advertí sobre el `namespace` vs `package`.
+
+---
+
+## Prompt 10
+**Pregunta (textual):**
+> "Aún no. Registra todos los prompts que te di en esta conversación y coloca un resumen muy pero muy pero muy breve de lo que me respondiste."
+
+**Resumen de mi respuesta:** Entregué un documento con los 10 prompts resumidos.
+
+---
+
+## Prompt 11 (actual)
+**Pregunta (textual):**
+> "Reescribe tu documento final, pero coloca palabra a palabra lo que te pedí, tal cual te lo mandé.
+
+**Resumen de mi respuesta:** Este documento.
